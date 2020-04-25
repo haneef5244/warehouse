@@ -4,10 +4,15 @@ import com.mynic.warehouse.obj.req.MainReq;
 import com.mynic.warehouse.validator.constraint.UserConstraint;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+
 @UserConstraint
 @Data
 public class DeleteUserReq extends MainReq {
-    Long id;
+    @NotEmpty
+    String id;
+    @NotEmpty
     String username;
+    @NotEmpty
     String password;
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@RestController()
+@RestController
 public class CustomerController {
 
     @Autowired
@@ -32,5 +32,7 @@ public class CustomerController {
     public ResponseEntity<MainResp> customerUpdate(@RequestBody @Valid UpdateCustomerReq req) {
         return ResponseEntity.ok(updateCustomerService.init(req));
     }
+
+
 
 }

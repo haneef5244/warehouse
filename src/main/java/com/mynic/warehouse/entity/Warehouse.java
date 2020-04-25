@@ -1,5 +1,7 @@
 package com.mynic.warehouse.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -7,26 +9,21 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Car", schema = "public")
+@Table(name="Warehouse", schema = "public")
 @EntityListeners(AuditingEntityListener.class)
 @Data
 @NoArgsConstructor
-public class Car {
+@AllArgsConstructor
+@Builder
+public class Warehouse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "car")
-    private RentalInfo rentalInfo;
+    @Column(name = "currentCapacity")
+    private Integer currentCapacity;
 
-    @Column(name = "carName")
-    private String carName;
-
-    @Column(name = "carType")
-    private String carType;
-
-    @Column(name = "plateNumber")
-    private String plateNumber;
-
+    @Column(name = "maxCapacity")
+    private Integer maxCapacity;
 }

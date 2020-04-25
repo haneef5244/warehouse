@@ -1,5 +1,6 @@
 package com.mynic.warehouse.entity;
 
+import com.mynic.warehouse.obj.req.rentalInfo.RentalInfoDetailsReq;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -37,4 +38,5 @@ public class RentalInfo {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "customerRentalInfoEntities", nullable = false)
     private Customer customerRentalInfoEntities;
+
 }

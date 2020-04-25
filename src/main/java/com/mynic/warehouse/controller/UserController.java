@@ -1,5 +1,6 @@
 package com.mynic.warehouse.controller;
 
+import com.mynic.warehouse.constant.ResourceConstant;
 import com.mynic.warehouse.obj.req.user.CreateUserReq;
 import com.mynic.warehouse.obj.req.user.DeleteUserReq;
 import com.mynic.warehouse.obj.req.user.UpdateUserReq;
@@ -11,16 +12,12 @@ import com.mynic.warehouse.service.user.GetUserService;
 import com.mynic.warehouse.service.user.UpdateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 public class UserController{
-
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
-
 
     @Autowired
     CreateUserService createUserService;
@@ -37,26 +34,22 @@ public class UserController{
     @Autowired
     private AuthenticationFacadeService authenticationFacadeService;
 
-    @Secured({ROLE_ADMIN})
-    @PostMapping(value = "/users/create")
+    @PostMapping(value = ResourceConstant.USER_CREATE)
     public ResponseEntity<MainResp> createUser(@RequestBody @Valid CreateUserReq req) {
         return ResponseEntity.ok(createUserService.init(req));
     }
 
-    @Secured({ROLE_ADMIN})
-    @PostMapping(value = "/users/delete")
+    @PostMapping(value = ResourceConstant.USER_DELETE)
     public ResponseEntity<MainResp> deleteUser(@RequestBody @Valid DeleteUserReq req) {
         return ResponseEntity.ok(deleteUserService.init(req));
     }
 
-    @Secured({ROLE_ADMIN})
-    @PostMapping(value = "/update")
+    @PostMapping(value = ResourceConstant.USER_UPDATE)
     public ResponseEntity<MainResp> updateUser(@RequestBody @Valid UpdateUserReq req) {
         return ResponseEntity.ok(updateUserService.init(req));
     }
 
-    @Secured({ROLE_ADMIN})
-    @GetMapping(value = "/users/get/{id}")
+    @GetMapping(value = ResourceConstant.USER_GET)
     public ResponseEntity<MainResp> getUser(@PathVariable Long id) {
         return ResponseEntity.ok(getUserService.init(id));
     }

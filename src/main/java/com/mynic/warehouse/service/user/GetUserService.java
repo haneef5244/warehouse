@@ -8,6 +8,8 @@ import com.mynic.warehouse.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class GetUserService {
 
@@ -17,15 +19,16 @@ public class GetUserService {
     public MainResp init(Long id) {
         User entity = null;
         try {
-            entity = repository.findById(id).get();
+            Optional<User> user = repository.findById(id);
+            if (!user.isPresent()) {
+                return MainResp.builder().status(Status.USER_NOT_FOUND.status)
+                        .message(Status.USER_NOT_FOUND.message)
+                        .build();
+            }
+            entity = user.get();
         } catch (Exception e) {
             return MainResp.builder().status(Status.INTERNAL_SERVER_ERROR.status)
                     .message(Status.INTERNAL_SERVER_ERROR.message)
-                    .build();
-        }
-        if (entity == null) {
-            return MainResp.builder().status(Status.USER_NOT_FOUND.status)
-                    .message(Status.USER_NOT_FOUND.message)
                     .build();
         }
         GetUserResp resp = new GetUserResp();

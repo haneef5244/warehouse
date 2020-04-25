@@ -34,4 +34,6 @@ public class Customer {
     @OneToMany(mappedBy = "customerRentalInfoEntities", cascade = CascadeType.ALL)
     private List<RentalInfo> rentalInfoEntities = new ArrayList<>();
 
+    @OneToOne(mappedBy = "customer")
+    private User user;
 }

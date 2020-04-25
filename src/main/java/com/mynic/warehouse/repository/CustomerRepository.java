@@ -5,11 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     Customer findByNric(String nric);
 
+    @Transactional
     @Modifying(clearAutomatically = true)
     @Query("UPDATE Customer c SET c.name=:name, c.phoneNumber=:phoneNumber WHERE c.nric=:nric")
     void updateCustomer(@Param("name") String name,

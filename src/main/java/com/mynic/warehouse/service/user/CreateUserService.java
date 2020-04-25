@@ -1,11 +1,13 @@
 package com.mynic.warehouse.service.user;
 
+import com.mynic.warehouse.constant.RoleType;
 import com.mynic.warehouse.constant.Status;
 import com.mynic.warehouse.entity.Role;
 import com.mynic.warehouse.entity.User;
 import com.mynic.warehouse.obj.req.MainReq;
 import com.mynic.warehouse.obj.req.user.CreateUserReq;
 import com.mynic.warehouse.obj.resp.MainResp;
+import com.mynic.warehouse.repository.RoleRepository;
 import com.mynic.warehouse.repository.UserRepository;
 import com.mynic.warehouse.service.AbstractMainService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +19,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -27,20 +29,26 @@ public class CreateUserService extends AbstractMainService implements UserDetail
     @Autowired
     UserRepository repository;
 
+    @Autowired
+    RoleRepository roleRepository;
+
     @Override
     public MainReq process(MainReq req) {
         CreateUserReq createUserReq = (CreateUserReq) req;
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         createUserReq.setPassword(passwordEncoder.encode(createUserReq.getPassword()));
+        log.info("encoded pass="+createUserReq.getPassword());
         return createUserReq;
     }
 
     @Override
     public MainReq update(MainReq req) {
         CreateUserReq createUserReq = (CreateUserReq) req;
+        List<Role> roles = createUserReq.getRoles().stream().map(role -> roleRepository.findByName(RoleType.valueOf(role))).collect(Collectors.toList());
         User entity = User.builder().name(createUserReq.getName())
                 .password(createUserReq.getPassword())
                 .username(createUserReq.getUsername())
+                .roles(new HashSet<>(roles))
                 .build();
         try {
             repository.save(entity);
@@ -50,6 +58,8 @@ public class CreateUserService extends AbstractMainService implements UserDetail
         }
         return createUserReq;
     }
+
+
 
     @Override
     public MainResp buildResponse(MainResp resp) {
@@ -72,4 +82,6 @@ public class CreateUserService extends AbstractMainService implements UserDetail
         final Set authorities = roleByUserId.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().toString().toUpperCase())).collect(Collectors.toSet());
         return authorities;
     }
+
+
 }

@@ -5,6 +5,8 @@ import com.mynic.warehouse.validator.constraint.UserConstraint;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @UserConstraint
 @Data
@@ -15,4 +17,5 @@ public class CreateUserReq extends MainReq {
     private String password;
     @NotEmpty(message = "Name must not be empty!")
     private String name;
+    private List<String> roles = new ArrayList<>();
 }

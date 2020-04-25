@@ -12,10 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EntityScan("com.mynic.warehouse")
 @SpringBootApplication
 public class WarehouseApplication {
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(WarehouseApplication.class, args);
 	}
-
 }

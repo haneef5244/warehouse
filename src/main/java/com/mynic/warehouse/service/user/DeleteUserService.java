@@ -24,7 +24,7 @@ public class DeleteUserService extends AbstractMainService {
     public MainReq update(MainReq req) {
         DeleteUserReq deleteUserReq = (DeleteUserReq) req;
         try {
-            repository.deleteById(deleteUserReq.getId());
+            repository.deleteById(Long.parseLong(deleteUserReq.getId()));
             deleteUserReq.setStatus(Status.SUCCESS);
         } catch (Exception e) {
             deleteUserReq.setStatus(Status.INTERNAL_SERVER_ERROR);

@@ -28,6 +28,7 @@ public class UpdateCustomerService extends AbstractMainService {
         try {
             repository.updateCustomer(customerReq.getName(), customerReq.getPhoneNumber(), customerReq.getNric());
         } catch (Exception e) {
+            e.printStackTrace();
             req.setStatus(Status.INTERNAL_SERVER_ERROR);
         }
         return req;
