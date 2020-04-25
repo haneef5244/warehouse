@@ -22,7 +22,7 @@ public class UpdateRentalInfoStatus {
     RentalInfoRepository rentalInfoRepository;
 
     @Transactional
-    //@Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void trackOverduePayments() {
         List<RentalInfo> rentalInfos = rentalInfoRepository.findCompletedActiveRents(new Date());
         if (!rentalInfos.isEmpty()) {
