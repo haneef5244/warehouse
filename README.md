@@ -1,5 +1,5 @@
 # warehouse
-A sample of requests for the endpoints is provided in the warehouse folder (how to get token for user and admin, request for endpoints, etc)
+A sample of requests for the endpoints is provided in the warehouse folder (how to get token for user and admin, request for endpoints, etc) in Mynic.postman_collection.json file (to be imported in postman)
 
 H2 password is : password
 
