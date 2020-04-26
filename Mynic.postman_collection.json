@@ -1,0 +1,359 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Mynic",
+		"_postman_id": "f475c0d3-5403-7ba8-387b-de0a9b6e8d4e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"description": "",
+			"item": [
+				{
+					"name": "Get \"User\" token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "client_id",
+								"password": "client_secret",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "localhost:8080/oauth/token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50X2lkOmNsaWVudF9zZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"description": "passwors of user",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Get user token to access endpoints accessible by \"User\" role"
+					},
+					"response": []
+				},
+				{
+					"name": "Get \"Admin\" token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "client_id",
+								"password": "client_secret",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "localhost:8080/oauth/token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50X2lkOmNsaWVudF9zZWNyZXQ=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"description": "passwors of user",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": "Get admin token to access endpoints accessible by \"Admin\" role"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rental info",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Rental Info by ID",
+					"request": {
+						"url": "localhost:8080/rentalInfo/get/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 3e277360-55e2-40f6-ab7e-8e3b2b70a134",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Get by id (User and admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rental Charge",
+					"request": {
+						"url": "localhost:8080/rentalInfo/get/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 3e277360-55e2-40f6-ab7e-8e3b2b70a134",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Get by id (User and admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rental Info",
+					"request": {
+						"url": "localhost:8080/rentalInfo/get/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 3e277360-55e2-40f6-ab7e-8e3b2b70a134",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Get by id (User and admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Rental Info",
+					"request": {
+						"url": "localhost:8080/rentalInfo/get",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 3e277360-55e2-40f6-ab7e-8e3b2b70a134",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Get by id (User and admin)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"url": "localhost:8080/users/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer b8f8ca32-6a1d-4254-bbc5-765bbf0d39dc",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"90909090\",\n\t\"password\": \"123\",\n\t\"name\": \"1,\"\n\t\n}"
+						},
+						"description": "Get by id (User and admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"url": "localhost:8080/users/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer b8f8ca32-6a1d-4254-bbc5-765bbf0d39dc",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"90909090\",\n\t\"password\": \"123\",\n\t\"name\": \"1,\"\n\t\n}"
+						},
+						"description": "Get by id (User and admin)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"description": "",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"url": "localhost:8080/users/create",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer b8f8ca32-6a1d-4254-bbc5-765bbf0d39dc",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"90909090\",\n\t\"password\": \"123\",\n\t\"name\": \"1,\"\n\t\n}"
+						},
+						"description": "Get by id (User and admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User ",
+					"request": {
+						"url": "localhost:8080/users/delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 4442397a-82a7-48b9-9961-acd3151a2b18",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 3,\n\"username\": \"9090909090900\",\n\t\"password\": \"hihihio\",\n\t\"name\": \"1,\"\n}"
+						},
+						"description": "Delete user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"url": "localhost:8080/users/delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 4442397a-82a7-48b9-9961-acd3151a2b18",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 3,\n\"username\": \"9090909090900\",\n\t\"password\": \"hihihio\",\n\t\"name\": \"1,\"\n}"
+						},
+						"description": "Delete user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"url": "localhost:8080/users/delete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 4442397a-82a7-48b9-9961-acd3151a2b18",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 3,\n\"username\": \"9090909090900\",\n\t\"password\": \"hihihio\",\n\t\"name\": \"1,\"\n}"
+						},
+						"description": "Delete user"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
